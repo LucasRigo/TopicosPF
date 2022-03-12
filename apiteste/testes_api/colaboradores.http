@@ -1,0 +1,49 @@
+# Obter a lista de colaboradores
+GET http://localhost:3000/colaboradores
+Content-Type: application/json
+###
+
+# Inserir novo colaboradores
+POST http://localhost:3000/colaboradores
+Content-Type: application/json
+
+{
+ "nome": "Carlinhos",
+ "email": "teste@testeo.com",
+ "senha": "testeeer"
+}
+###
+
+
+
+
+
+# Alterar um colaboradores
+PUT http://localhost:3000/colaboradores
+Content-Type: application/json
+
+{
+    "_id": "622be926b7b391b450221b58",
+    "nome": "Carloss",
+    "email": "teste@teste.com",
+    "senha": "testeee2"
+}
+###
+
+
+# Excluir um colaborador pelo id
+DELETE http://localhost:3000/colaboradores/622bebc91d20d5bc47c43478
+Content-Type: application/json
+###
+
+
+# Obter colaborador pelo id
+GET http://localhost:3000/colaboradores/622bebf71d20d5bc47c43479
+Content-Type: application/json
+###
+
+
+# Obter colaboradores filtrando
+GET http://localhost:3000/colaboradores/filtro/Carlinhos
+Content-Type: application/json
+###
