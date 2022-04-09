@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 function Template() {
-  // Declare uma nova variável de state
+  // Declare variáveis de state
   
 
   return (
     <div>
-      
-    
+     
 
+      
     </div>
   );
 }

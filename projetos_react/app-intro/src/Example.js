@@ -8,13 +8,12 @@ function Example() {
     <div>
       <p>Você clicou {count} vezes</p>
       <button onClick={() => setCount(count + 1)}>
-          Clique para atualizar o cont
+        Clique aqui para atualizar o cont.
       </button>
 
-      <button onClick={() => setCount(count == 0)}>
-          Clique para zerar
-      </button>
-
+      <button onClick={() => setCount(0)}>
+        Clique aqui para zerar o cont.
+      </button>      
     </div>
   );
 }
