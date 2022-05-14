@@ -1,4 +1,21 @@
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+
 const ColaboradorList = (props) => {
+
+
+  const operacoesBodyTemplate = (rowData) => {
+    return (
+      <div>
+
+        <Button label="Editar" className="p-button-rounded p-button-warning" onClick={() => props.editar(rowData._id)}/>
+        <Button label="Excluir" className="p-button-rounded p-button-danger" onClick={() => props.excluir(rowData._id)}/>
+      </div>
+    )
+  }
+
+
   return (
     <div className="App">
       <h4>Listagem de Colaboradores</h4>
@@ -12,6 +29,27 @@ const ColaboradorList = (props) => {
         Inserir
       </button>
 
+
+
+      <DataTable value={props.colaboradores} responsiveLayout="scroll" paginator
+        paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+        currentPageReportTemplate="Mostrando de {first} até {last} de {totalRecords}" 
+        rows={5} rowsPerPageOptions={[5, 10, 20, 50]}
+        emptyMessage="Nenhum colaborador encontrado."
+
+        selectionMode="single" selection={props.colaborador} 
+        onSelectionChange={e => props.setColaborador(e.value)} dataKey="_id"
+      >
+
+        <Column field="_id" header="Id" sortable filter></Column>
+        <Column field="nome" header="Nome" sortable filter></Column>
+        <Column field="email" header="Email" sortable filter></Column>
+        <Column header="Operações" body={operacoesBodyTemplate}></Column>
+      </DataTable>
+
+
+
+      {/*  
       <table className="table">
         <thead>
           <tr>
@@ -53,6 +91,7 @@ const ColaboradorList = (props) => {
           )}
         </tbody>
       </table>
+      */}
     </div>
   );
 };
