@@ -6,6 +6,8 @@ import Menu from "./Menu";
 
 const Home = lazy(() => import('./pages/home/Home'));
 const ColaboradorCon = lazy(() => import('./pages/colaborador/ColaboradorCon'));
+const SolicitanteCon = lazy(() => import('./pages/solicitante/SolicitanteCon'));
+const AtividadeCon = lazy(() => import('./pages/atividade/AtividadeCon'));
 
 
 
@@ -19,6 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/colaborador" element={<ColaboradorCon />} />
+          <Route path="/solicitante" element={<SolicitanteCon />} />
+          <Route path="/atividade" element={<AtividadeCon />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

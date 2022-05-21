@@ -1,0 +1,8 @@
+apirequisicoes:
+1 - runBaseRequisicoes
+2 - code
+3 - runApi
+
+apprequisicoes:
+1- code
+2- npm start
