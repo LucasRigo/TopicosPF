@@ -4,94 +4,46 @@ import { Button } from 'primereact/button';
 
 const ColaboradorList = (props) => {
 
-
   const operacoesBodyTemplate = (rowData) => {
     return (
-      <div>
-
-        <Button label="Editar" className="p-button-rounded p-button-warning" onClick={() => props.editar(rowData._id)}/>
-        <Button label="Excluir" className="p-button-rounded p-button-danger" onClick={() => props.excluir(rowData._id)}/>
-      </div>
+      <>
+        
+          <Button type="button" icon="pi pi-pencil" className="p-button-rounded p-button-text " 
+                  onClick={() => props.editar(rowData._id)}></Button>
+          <Button type="button" icon="pi pi-trash" className="p-button-rounded p-button-text" 
+                  onClick={() => { props.excluir(rowData._id); }}></Button>
+        
+      </>            
     )
   }
 
+  const header = (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      Listagem de Colaboradores
+      <Button icon="pi pi-file-o" label="Inserir" className="p-button-sm" onClick={() => props.inserir()} />
+    </div>
+  );
+
+  const footer = `Total de itens: ${props.colaboradores ? props.colaboradores.length : 0}`;
 
   return (
     <div className="App">
-      <h4>Listagem de Colaboradores</h4>
-      <button
-        className="btn btn-primary btn-sm"
-        onClick={props.onClickAtualizar}
-      >
-        Atualizar Lista
-      </button>
-      <button className="btn btn-success btn-sm" onClick={props.inserir}>
-        Inserir
-      </button>
 
-
-
-      <DataTable value={props.colaboradores} responsiveLayout="scroll" paginator
-        paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-        currentPageReportTemplate="Mostrando de {first} até {last} de {totalRecords}" 
+      {/* Montando uma tabela com datatable  */}
+      <DataTable value={props.colaboradores} responsiveLayout="scroll" header={header} footer={footer}
+        paginator className="p-datatable-sm" paginatorPosition="top"
+        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown CurrentPageReport"
+        currentPageReportTemplate="Mostrando de {first} até {last} de {totalRecords}"
         rows={5} rowsPerPageOptions={[5, 10, 20, 50]}
         emptyMessage="Nenhum colaborador encontrado."
-
-        selectionMode="single" selection={props.colaborador} 
-        onSelectionChange={e => props.setColaborador(e.value)} dataKey="_id"
+        selectionMode="single" selection={props.colaborador} onSelectionChange={e => props.setColaborador(e.value)} dataKey="_id"
       >
-
-        <Column field="_id" header="Id" sortable filter></Column>
+        <Column field="_id" header="Id" sortable></Column>
         <Column field="nome" header="Nome" sortable filter></Column>
         <Column field="email" header="Email" sortable filter></Column>
         <Column header="Operações" body={operacoesBodyTemplate}></Column>
       </DataTable>
 
-
-
-      {/*  
-      <table className="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Senha</th>
-            <th>Operações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.colaboradores.length > 0 ? (
-            props.colaboradores.map((o, index) => (
-              <tr key={index}>
-                <td>{o._id}</td>
-                <td>{o.nome}</td>
-                <td>{o.email}</td>
-                <td>{o.senha}</td>
-                <td>
-                  <button
-                    onClick={() => props.editar(o._id)}
-                    className="btn btn-warning btn-sm"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => props.excluir(o._id)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    Excluir
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={3}>Nenhum colaborador!.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-      */}
     </div>
   );
 };
